@@ -14,7 +14,11 @@
           {{ currentButtonState.stepPrev }}
         </div>
       </button>
-      <button @click.prevent.stop="handleStep('next')" class="btn-next">
+      <button
+        @click.prevent.stop="handleStep('next')"
+        type="submit"
+        class="btn-next"
+      >
         <div class="btn-next-center">
           {{ currentButtonState.stepNext }}
           <div :class="{ arrow: currentStep !== 3 }"></div>
@@ -40,6 +44,7 @@ export default {
     };
   },
   created() {
+    //如果直接改變路由，按鈕的樣式要改變
     switch (this.$route.path) {
       case "/form/1":
         this.currentStep = 1;
@@ -86,13 +91,14 @@ export default {
           case 3:
             //如果在第三步又按下一步 --> 送出表單
             this.$emit("submit-form");
+            //回到第一步
             this.currentStep = 1;
             break;
         }
       }
       //取得當前按鈕狀態
       this.currentButtonState = getButtonState(this.currentStep);
-      //當前步驟 傳回父層
+      //當前步驟 傳回父層 form
       this.$emit("after-change-currentStep", this.currentStep);
     },
     getButtonState() {

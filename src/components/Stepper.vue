@@ -61,7 +61,7 @@ export default {
   },
   data() {
     return {
-      StepState: {},
+      StepState: {}, //目前的步驟狀態 的樣式
     };
   },
   created() {

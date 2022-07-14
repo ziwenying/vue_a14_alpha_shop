@@ -98,10 +98,12 @@ export default {
   },
   methods: {
     fetchProducts() {
+      // 如有已存的購物籃資料，取出來；沒有就放預設的資料
       this.bucket.products =
         JSON.parse(localStorage.getItem(STORAGE_KEY)) || dummyData.products;
     },
     fetchShipWay() {
+      //由 父層 form 既存的 formData 來判斷購物車內運費顯示 "免費" 或 "$500"
       this.bucket.getShipWay =
         this.formData.shippingFee === 0 ? "免費" : "$500";
     },
@@ -129,14 +131,16 @@ export default {
         });
       };
       const handleTotal = () => {
+        //由 父層 form 既存的 formData 來判斷目前運費
         this.bucket.total = this.formData.shippingFee;
+        //再加總 購物籃內各產品的小計，得到總金額
         this.bucket.products.forEach((product) => {
           this.bucket.total += product.amount;
         });
       };
 
       if (plusMinus === "plus") {
-        // 增加產品樹廖
+        // 增加產品數量
         this.bucket.products = calPlus();
       } else if (plusMinus === "minus") {
         // 減少產品數量
@@ -144,11 +148,11 @@ export default {
       }
       // 計算總金額
       handleTotal();
-      //傳回父層 form
+      //總金額 傳回父層 form，存入 formData
       this.$emit("after-cal-total", this.bucket.total);
     },
     addShipFee() {
-      // 運費變化後，購物籃資料改變，總金額計算好傳回父層 form
+      // 運費變化後，購物籃資料改變
       if (this.shipWay === "$500") {
         this.bucket.total += 500;
         this.bucket.getShipWay = "$500";
@@ -156,6 +160,7 @@ export default {
         this.bucket.total -= 500;
         this.bucket.getShipWay = "免費";
       }
+      // 總金額計算好傳回父層 form
       this.$emit("after-cal-total", this.bucket.total);
     },
     saveStorage() {
@@ -166,13 +171,14 @@ export default {
   watch: {
     shipFee: {
       handler: function () {
+        // 如果 form 改變運費，購物籃內 運費要更新
         this.addShipFee();
       },
       deep: true,
     },
     clear: {
       handler: function () {
-        // 送出表單後，購物車資料恢復成原始資料
+        // 送出表單後，clear 改變，購物車資料恢復成原始資料
         this.bucket.products = dummyData.products;
         this.bucket.total = 5298;
         this.bucket.getShipWay = "免費";

@@ -58,7 +58,7 @@ export default {
   methods: {
     handleShipFee(shipFee, shipWay) {
       this.formData.shippingFee = shipFee;
-      // 把運費、運送方式資料傳回到 form，再從 form 傳到 bucket (component)
+      // 把運費、運送方式資料傳回到 父層中的 form
       this.$emit("after-handle-shipFee", shipFee, shipWay);
     },
   },

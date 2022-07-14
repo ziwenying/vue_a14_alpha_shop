@@ -45,6 +45,7 @@ import Bucket from "../components/Bucket";
 
 const STORAGE_KEY = "checkout-data";
 
+// 控制步驟進度 樣式 使用
 const dummySteps = {
   steps: [
     {
@@ -94,6 +95,8 @@ const dummySteps = {
     },
   ],
 };
+
+// 控制按鈕進度 樣式 使用
 const dummyButtonStates = {
   buttonStates: [
     {
@@ -138,7 +141,7 @@ export default {
       currentStep: 1,
       shipFee: -1,
       shipWay: "",
-      stepsName: "",
+      stepsName: "", //路由名稱
       formData: {
         salutation: "",
         username: "",
@@ -153,12 +156,12 @@ export default {
         ccv: "",
         totalPrice: 5298,
       },
-      clear: false,
+      clear: false, //判斷送出表單後清除購物籃內資料
     };
   },
   created() {
     this.fetchData();
-    this.showFormData = {};
+
     // 取出瀏覽器中既有的資料，如果沒有就取預設資料
     this.formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {
       salutation: "",
@@ -200,12 +203,12 @@ export default {
       this.$router.push({ name: this.stepsName });
     },
     afterHandleShipFee(shipFee, shipWay) {
-      // 表單的「運費」和「運送方式」資料，要傳到 購物車內 使用
+      // 表單的「運費」和「運送方式」的資料，要傳到 購物車 (bucket) 內  使用
       this.shipFee = shipFee;
       this.shipWay = shipWay;
     },
     afterCalTotal(total) {
-      // 紀錄 購物車內總金額
+      // 紀錄 購物車內總金額，最後印出 表單內容時使用
       this.formData.totalPrice = total;
     },
     submitForm() {
@@ -225,9 +228,9 @@ export default {
         cardNumber: "",
         expDate: "",
         ccv: "",
-        totalPrice: 5928,
+        totalPrice: 5298,
       };
-      //為了清除購物車內的資料 傳至 bucket
+      //當 this.clear 改變，清除購物車內資料
       this.clear = !this.clear;
     },
     saveStorage() {
