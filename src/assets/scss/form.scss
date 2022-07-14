@@ -1,0 +1,42 @@
+/* starting */
+/* checkout */
+.checkout {
+  width: 100%;
+  .container {
+    position: relative;
+
+    .right-content {
+      border: 1px var(--light-light-to-dark-gray) solid;
+      border-radius: 8px;
+      margin-top: 32px;
+      background: var(--bucket-bg);
+    }
+  }
+}
+
+@media screen and (min-width: 375px) {
+  /* checkout */
+  .checkout {
+    margin: 0 0 120px 0;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 160px 0 0 0;
+
+      h1 {
+        position: absolute;
+        bottom: calc(100% + 24px);
+      }
+      .left-content {
+        position: relative;
+        margin: 0 67px 0 0;
+        width: 100%;
+      }
+      .right-content {
+        width: 100%;
+        margin-left: 76px;
+      }
+    }
+  }
+}

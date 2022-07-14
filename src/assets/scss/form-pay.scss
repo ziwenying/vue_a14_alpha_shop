@@ -1,0 +1,99 @@
+%initial-style {
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+%input-select-style {
+  padding: 0 0 0 18px;
+  width: 100%;
+  height: 40px;
+  border: 1px var(--dark-gray-to-white) solid;
+  border-radius: 4px;
+  color: var(--circle-bg-active);
+  background: transparent;
+  &:hover,
+  &:focus {
+    border: 2px var(--font-dark) solid;
+  }
+  option {
+    color: var(--dark-gray);
+  }
+}
+
+%input-select-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--font-gray);
+}
+
+/* starting */
+.part {
+  margin: 24px 0 0 0;
+
+  /* part three */
+  .card-name {
+    padding: 24px 0 0 0;
+
+    .form-label {
+      @extend %input-select-title;
+    }
+    .frame {
+      @extend %initial-style;
+      @extend %input-select-style
+    }
+  }
+  .card,
+  .date-cvc {
+    margin: 16px 0 0 0;
+
+    .form-label {
+      @extend %input-select-title;
+    }
+    .frame {
+      @extend %initial-style;
+      @extend %input-select-style
+    }
+  }
+  .date-cvc {
+    display: flex;
+    justify-content: space-between;
+
+    .date,
+    .cvc {
+      label:nth-child(1) {
+        @extend %input-select-title;
+      }
+    }
+    .date {
+      flex-grow: 1;
+    }
+    .cvc {
+      flex-grow: 1;
+      margin: 0 0 0 30px;
+    }
+  }
+}
+
+/*  375px 為分界 */
+@media screen and (min-width: 375px) {
+
+  .card-name-wrapper {
+    display: grid;
+    grid-template-areas: "name name name name blank blank"
+    ;
+
+    .card-name {
+      grid-area: name;
+    }
+  }
+  .card-wrapper {
+    display: grid;
+    grid-template-areas: "card card card card blank blank"
+    ;
+
+    .card {
+      grid-area: card;
+    }
+  }
+}

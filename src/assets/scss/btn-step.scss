@@ -1,0 +1,80 @@
+/* starting */
+.btn-control {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+
+  .btn-wrapper {
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    margin: 24px 0 0 0;
+    padding: 24px 0 0 0;
+    border-top: 2px var(--divider) solid;
+
+    .btn-back {
+      width: 100%;
+      height: 46px;
+      background: var(--body-bg);
+      color: var(--font-dark);
+      font-size: 1rem;
+      border-radius: 8px;
+
+      .btn-back-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &.arrow {
+          width: 20px;
+          height: 9px;
+          background: var(--back-arrow-url);
+          background-size: 20px 9px;
+          margin: 14px 14px 14px 0;
+        }
+      }
+    }
+  }
+  .btn-next {
+    width: 100%;
+    height: 46px;
+    background: var(--pink);
+    padding: 0;
+    font-size: 1rem;
+    border-radius: 8px;
+
+    .btn-next-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+
+      .arrow {
+        width: 20px;
+        height: 9px;
+        margin: 14px 0 14px 14px;
+      }
+    }
+  }
+}
+
+/*  375px 為分界 */
+@media screen and (min-width: 375px) {
+  .btn-control {
+    position: absolute;
+    width: 100%;
+    top: 80%;
+    bottom: 0;
+    .btn-wrapper {
+      .btn-back {
+        .btn-back-center {
+          justify-content: start;
+        }
+      }
+      .btn-back,
+      .btn-next {
+        width: 50%;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+// step number
+@mixin getStepNums($num) {
+  @for $i from 1 through $num {
+    &:nth-child(#{$i}) .circle::after {
+      content: "#{$i}";
+    }
+  }
+}
+
+/* starting */
+.step-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+
+  .circle-wrapper {
+    display: flex;
+    align-items: center;
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 32px;
+      height: 32px;
+      border: 1px var(--circle-text-line) solid;
+      color: var(--circle-text-line);
+      border-radius: 50%;
+
+      .line {
+        position: absolute;
+        width: 60px;
+        height: 2px;
+        background: var(--circle-text-line);
+        left: 10vw;
+      }
+      .line.active {
+        background: var(--circle-text-line-active);
+      }
+      &.active {
+        border: 1px var(--circle-text-line-active) solid;
+      }
+    }
+
+    @include getStepNums(3);
+
+    &:nth-child(1) .circle {
+      background: var(--dark-gray);
+    }
+    &:nth-child(1) .circle::after {
+      color: var(--white);
+    }
+    .circle-text {
+      display: none;
+    }
+    .checked.circle::after {
+      content: "\2714";
+      color: var(--white);
+    }
+    .checked.active {
+      border: 1px var(--dark-gray) solid;
+      background: var(--dark-gray);
+    }
+    .active {
+      color: var(--circle-bg-active);
+    }
+  }
+}
+/*  375px 為分界 */
+@media screen and (min-width: 375px) {
+  .step-container {
+    .circle-wrapper {
+      .circle-text {
+        display: block;
+        margin: 0 0 0 8px;
+        color: var(--circle-text-line);
+        &.active {
+          color: var(--dark-gray-to-white);
+        }
+      }
+    }
+  }
+}

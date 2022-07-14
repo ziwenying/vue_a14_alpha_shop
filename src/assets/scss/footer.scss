@@ -1,0 +1,45 @@
+/* starting */
+.footer-container {
+  display: none;
+}
+
+/*  375px 為分界 */
+@media screen and (min-width: 375px) {
+
+  .footer-container {
+    all: unset;
+    display: flex;
+    justify-content: space-between;
+    padding: 64px 3rem 80px 3rem;
+    background: var(--footer-bg);
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      .logo {
+        width: 136px;
+        height: 24px;
+        background: var(--logo-url);
+        background-size: 136px 24px;
+      }
+    }
+
+    .footer-content {
+      .title:nth-child(1) {
+        padding: 0 0 24px 0;
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .text {
+        color: var(--font-gray);
+        padding: 0 0 8px 0;
+        cursor: pointer;
+
+        .media {
+          font-size: 24px;
+          padding: 0 18px 0 0;
+        }
+      }
+    }
+  }
+}

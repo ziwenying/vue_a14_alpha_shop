@@ -1,0 +1,149 @@
+/* starting */
+.nav {
+  text-align: center;
+  height: 56px;
+  position: relative;
+
+  .logo {
+    display: inline-block;
+    width: 136px;
+    height: 24px;
+    margin: 16px;
+    background: var(--logo-url);
+    background-size: 136px 24px;
+  }
+  .item {
+    width: 100%;
+    background: var(--body-bg);
+    opacity: 0;
+    z-index: 1;
+    .item-list {
+      text-align: center;
+      padding: 24px;
+      border-bottom: 1px var(--light-light-gray) solid;
+    }
+    .item-icon {
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+    .image {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+    }
+    .icon {
+      margin: 0 12px 0 12px;
+      cursor: pointer;
+    }
+    .search {
+      background: var(--search-url);
+      background-size: 24px;
+    }
+    .cart {
+      background: var(--cart-url);
+      background-size: 24px;
+    }
+    .mode {
+      background: var(--mode-url);
+      background-size: 24px;
+    }
+  }
+  .item-top {
+    position: absolute;
+    top: 100%;
+  }
+  .item {
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 0.3s ease-out;
+  }
+  .toggle:checked ~ .item {
+    transform: scale(1, 1);
+    opacity: 1;
+
+    .item-list,
+    .item-icon {
+      transition: opacity 0.35s ease-out 0.3s;
+      opacity: 1;
+    }
+  }
+  .navbar-toggle-label {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    bottom: 0;
+
+    .hamburger,
+    .hamburger::before,
+    .hamburger::after {
+      position: absolute;
+      left: 0;
+      content: "";
+      height: 3px;
+      background: var(--dark-gray-to-white);
+    }
+    .hamburger {
+      width: 20px;
+    }
+    .hamburger::before {
+      width: 14px;
+      top: 9px;
+    }
+    .hamburger::after {
+      top: 18px;
+      width: 8px;
+    }
+  }
+}
+
+
+/*  375px 為分界 */
+@media screen and (min-width: 375px) {
+  .nav {
+    height: 30px;
+    .item-top {
+      all: unset;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      // width: 100%;
+      margin: 16px 0;
+      grid-gap: 1rem;
+
+      .item-list {
+        all: unset;
+        margin: 0 32px 0 0;
+        cursor: pointer;
+      }
+
+      .item-icon {
+        all: unset;
+        cursor: pointer;
+
+        .item-icon-wrapper {
+          display: inline-block;
+        }
+      }
+    }
+    .logo {
+      display: inline-block;
+      margin: 0;
+      width: 136px;
+      height: 24px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      background: var(--logo-url);
+      background-size: 136px 24px;
+    }
+    .navbar-toggle-label {
+      display: none;
+    }
+  }
+}
